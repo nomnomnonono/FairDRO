@@ -1,7 +1,7 @@
-import numpy as np
-import random
 import os
+import random
 
+import numpy as np
 import torch
 
 
@@ -14,11 +14,11 @@ def set_seed(seed):
 
 
 def create_result_directory(path, args):
-    path = os.path.join(path, args.method) if args.method is not None else os.path.join(path, "GT")
     dir = f"{args.dataset}-{args.arch}-"
-    if args.name is not None:
-        dir += args.name + "-"
-    return os.path.join(path, f"{dir}rho{args.rho}-seed{args.seed}-bs{args.batch_size}-lr{args.lr}-wd{args.wd}")
+    return os.path.join(
+        path,
+        f"{dir}rho{args.rho}-seed{args.seed}-bs{args.batch_size}-lr{args.lr}-wd{args.wd}",
+    )
 
 
 def find_latest_checkpoint(paths):
@@ -28,7 +28,7 @@ def find_latest_checkpoint(paths):
         if max_value < epoch:
             max_value = epoch
             checkpoint = path
-    return checkpoint 
+    return checkpoint
 
 
 def save_model(model, directory, filename="model.pt"):
