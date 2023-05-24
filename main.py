@@ -16,8 +16,6 @@ def argparser() -> argparse.Namespace:
     parser.add_argument("--arch", type=str, help="Model name")
     parser.add_argument("-s", "--seed", type=int, help="Training seed")
     parser.add_argument("--y", type=str, help="Target label")
-    parser.add_argument("--name", type=str, help="Seed and n_label of FixMatch")
-    parser.add_argument("--method", type=str, help="Training method")
     parser.add_argument("--label_dir", type=str, help="Training method")  # "../FFVAE/label/celeba/new/"
     parser.add_argument("--root", type=str, help="Training method")  # "../FFVAE/data/CelebA/img_align_celeba/"
     parser.add_argument("--rho", type=float, help="Hyper Parameter")
@@ -35,10 +33,10 @@ def argparser() -> argparse.Namespace:
 def main(args):
     set_seed(args.seed)
 
-    dataset = get_dataset(args.dataset, "train", args.y, name=args.name, method=args.method, label_dir=args.label_dir, root=args.root)
-    val_dataset = get_dataset(args.dataset, "val", args.y, name=args.name, method=args.method, label_dir=args.label_dir, root=args.root)
+    dataset = get_dataset(args.dataset, "train", args.y, label_dir=args.label_dir, root=args.root)
+    val_dataset = get_dataset(args.dataset, "val", args.y, label_dir=args.label_dir, root=args.root)
     val_loader = DataLoader(val_dataset, batch_size=args.batch_size, num_workers=1)
-    test_dataset = get_dataset(args.dataset, "test", args.y, name=args.name, method=args.method, label_dir=args.label_dir, root=args.root)
+    test_dataset = get_dataset(args.dataset, "test", args.y, label_dir=args.label_dir, root=args.root)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, num_workers=1)
 
     model = ModelFactory().get_model(args.arch, img_size=(64, 64)).float()

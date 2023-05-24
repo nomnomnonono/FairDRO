@@ -1,0 +1,19 @@
+version: "3"
+services:
+  ffvae:
+    container_name: fairdro
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: fairdro
+    volumes:
+      - .:/usr/src
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    tty: true
+    shm_size: 2gb
