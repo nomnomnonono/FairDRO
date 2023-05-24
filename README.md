@@ -16,7 +16,7 @@ $ make up
 ```bash
 $ make exec
 ```
-## 実行方法
+## 実行例
 ```bash
-$ python main.py -c config/celeba.yaml
+$ python main.py --rho $rho --lr 0.001 --wd 0.001 -s $seed -b 256 -d celeba --target Smiling --sens Male --arch $model -e 50 --root data/CelebA/
 ```

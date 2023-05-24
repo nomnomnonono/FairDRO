@@ -16,7 +16,7 @@ RUN pip3 install --upgrade pip \
 COPY pyproject.toml poetry.lock /usr/src/
 RUN poetry install
 
-# TODO: can't install poetry
-RUN pip install pandas
+# can't add poetry
+RUN poetry run pip install pandas
 
 COPY ./ /usr/src/
