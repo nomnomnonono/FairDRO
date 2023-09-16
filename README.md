@@ -1,4 +1,6 @@
 # FairDRO: Re-weighting Based Group Fairness Regularization via Classwise Robust Optimization
+In progress...
+
 非公式のFairDRO (https://openreview.net/forum?id=Q-WfHzmiG9m) の再現実装です．
 
 ## 実行環境
